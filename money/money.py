@@ -169,10 +169,10 @@ class Money:
     def __abs__(self) -> 'Money':
         return self.__class__(str(abs(self._amount)), self._currency)
 
-    def format(self, locale: str='en_US') -> str:
+    def format(self, locale: str='en_US', currency_digits: bool=True) -> str:
         """Returns a string of the currency formatted for the specified locale"""
 
-        return format_currency(self.amount, self.currency.name, locale=locale)
+        return format_currency(self.amount, self.currency.name, locale=locale, currency_digits=currency_digits)
 
     def _assert_same_currency(self, other: 'Money') -> None:
         if self.currency != other.currency:

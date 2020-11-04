@@ -240,6 +240,7 @@ class TestMoney:
 
     def test_format(self):
         assert Money('3.24').format() == '$3.24'
+        assert Money('3.24').format(currency_digits=False) == '$324'
         assert Money('5.56', Currency.EUR).format('en_UK') == '€5.56'
         assert Money('10', Currency.JPY).format() == '¥10'
         assert Money('94', Currency.JPY).format('ja_JP') == '￥94'
