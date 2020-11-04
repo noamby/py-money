@@ -10,9 +10,12 @@ from money.exceptions import InvalidAmountError, CurrencyMismatchError, InvalidO
 class Money:
     """Class representing a monetary amount"""
 
-    def __init__(self, amount: str, currency: Currency=Currency.USD) -> None:
+    def __init__(self, amount: str, currency: Union[Currency, str]=Currency.USD) -> None:
         self._amount = Decimal(amount)
-        self._currency = currency
+        if type(currency) == str:
+            self._currency = getattr(Currency, currency)
+        else:
+            self._currency = currency
 
         if self._round(self._amount, currency) != Decimal(amount):
             raise InvalidAmountError

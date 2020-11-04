@@ -21,6 +21,10 @@ class TestMoney:
         assert money.amount == Decimal('1')
         assert money.currency == Currency.USD
 
+        money = Money('1', 'USD')
+        assert money.amount == Decimal('1')
+        assert money.currency == Currency.USD
+
         money = Money('199', Currency.JPY)
         assert money.amount == Decimal('199')
         assert money.currency == Currency.JPY
